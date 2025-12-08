@@ -14,6 +14,23 @@
         <a href="/relation">Relation</a>
     </nav>
 
-    <p>Page relation</p>
+<ul>
+    {{range .Index}}
+        <li>
+            <h3>Artiste ID : {{.ID}}</h3>
+            <ul>
+                {{range $city, $dates := .DatesLocations}}
+                    <li>
+                        {{$city}} :
+                        {{range $dates}}
+                            {{.}}
+                        {{end}}
+                    </li>
+                {{end}}
+            </ul>
+        </li>
+    {{end}}
+</ul>
+
 </body>
 </html>

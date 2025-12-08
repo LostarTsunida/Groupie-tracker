@@ -15,7 +15,17 @@
         <a href="/relation">Relation</a>
     </nav>
 
-    <p>Page locations</p>
+<ul>
+    {{range .Index}}
+        <li>
+            ID: {{.ID}}<br>
+            {{range .Locations}}
+                {{.}}<br>
+            {{end}}
+            Dates URL: {{.Dates}}
+        </li>
+    {{end}}
+</ul>
 
 </body>
 </html>
