@@ -19,7 +19,7 @@
             <a href="/artists">Les artistes</a>
             <a href="/locations">Locations</a>
             <a href="/dates">Dates</a>
-            <a href="/relation">Relation</a>
+            <a href="/relation"> Relation</a>
         </div>
     </nav>
 
@@ -29,11 +29,19 @@
             <img src="{{.Image}}" alt="logo du groupe" class="product-card-image">
             <div class="product-card_details">
                 <h2 class="product-card_title">{{.Name}}</h2>
-                <button class="product-card_button" type="button">Détails</button>
+            </div>
+            <div>
+                <button class="product-card_button" type="button">Locations</button>
+                <button class="product-card_button" type="button">Dates</button>
+                <button class="product-card_button" type="button">Relation</button>
             </div>
         </div>
     {{end}}
     </div>
+
+    <footer>
+        <span class="footer">© 2025 Groupie Trackers | Made with love by Mattéo.G & Loris.S | Projet étudiant Ynov Bordeaux 1ère année bachelor</span>
+    </footer>
 
 </body>
 </html>
