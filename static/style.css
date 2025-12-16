@@ -4,6 +4,10 @@
   font-weight: 700;
 }
 
+body {
+    background-color: rgb(23, 36, 61);
+}
+
 .titan-one-regular {
   font-family: "Titan One", sans-serif;
   font-weight: 400;
@@ -11,11 +15,13 @@
 }
 
 .navbar {
-    background-color: rgb(23, 36, 61);
+    background-color: rgb(8, 63, 109);
     padding: 40px 20px;
     display: flex;
     justify-content: center;
     border-radius: 24px;
+    margin-bottom: 40px;
+    height: 40px;
 }
 
 .links-navbar a {
@@ -25,11 +31,25 @@
     font-family: "lexend";
     font-weight: 700;
     color: rgb(255, 255, 255);
+    transition: all 0.1s ease-in-out;
+}
+
+.links-navbar a:hover {
+    font-size: 35px;
 }
 
 .title {
   display: flex;
   justify-content: center;
+}
+
+/* image accueil */
+
+.image-accueil {
+    width: 600px;
+    height: auto;
+    border-radius: 24px;
+    padding: 15px;
 }
 
 /* artists */
@@ -38,19 +58,20 @@
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    justify-content: center;
 }
 
 .product-card {
     width: 340px;
     height: 480px;
     border-radius: 24px;
-    background-color: rgb(23, 36, 61);
+    background-color: rgb(8, 63, 109);
     padding: 16px;
     transition: all 0.3s ease-in-out;
 }
 
 .product-card:hover {
-    background-color: rgb(35, 60, 119);
+    background-color: rgb(42, 39, 87);
 }
 
 .product-card-image {
@@ -70,8 +91,5 @@
     flex-direction: column;
     align-items: flex-start;
     color: white;
+    justify-content: center;
 }
-
-
-
-
