@@ -24,6 +24,10 @@ body {
     height: 40px;
 }
 
+.links-navbar {
+    display: flex;
+}
+
 .links-navbar a {
     text-decoration: none;
     margin-right: 40px;
@@ -35,7 +39,8 @@ body {
 }
 
 .links-navbar a:hover {
-    font-size: 35px;
+    transform: scale(1.15);
+    color: rgb(231, 149, 41);
 }
 
 .title {
@@ -59,13 +64,11 @@ body {
     background-color: rgb(8, 63, 109);
     padding: 16px;
     transition: all 0.3s ease-in-out;
-    transition: all 0.3s;
 }
 
 .product-card:hover {
     background-color: rgba(231, 231, 231, 0.37);
-    width: 345px;
-    height: 485px;
+    transform: scale(1.08);
 }
 
 .product-card-image {
