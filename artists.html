@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Artistes - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav class="links-navbar">
+            <a href="/">Accueil</a>
+            <a href="/artists" class="active">Artistes</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <h1 class="page-title">Artistes</h1>
+
+        <form method="GET" action="/artists" class="search-bar-inline">
+            <div class="search-wrapper">
+                <input type="text" id="artist-search-artists" name="q"
+                       placeholder="Rechercher un artiste ou un membre..." autocomplete="off" />
+                <button type="submit">Rechercher</button>
+                <div id="suggestions-artists" class="suggestions"></div>
+            </div>
+        </form>
+
+        {{if .}}
+        <section class="product-container">
+            {{range .}}
+            <a href="/artist?id={{.ID}}" class="product-card-link">
+                <article class="product-card">
+                    <img src="{{.Image}}" alt="{{.Name}}" class="product-card-image">
+                    <div class="product-card_details">
+                        <h2 class="product-card_title">{{.Name}}</h2>
+                        <p>Création : {{.CreationDate}}</p>
+                        <p>Premier album : {{.FirstAlbum}}</p>
+                        {{if .Members}}
+                        <p>Membres :</p>
+                        <ul>
+                            {{range .Members}}<li>{{.}}</li>{{end}}
+                        </ul>
+                        {{end}}
+                    </div>
+                </article>
+            </a>
+            {{end}}
+        </section>
+        {{else}}
+        <p>Aucun artiste trouvé pour cette recherche.</p>
+        {{end}}
+    </main>
+
+    <footer class="footer">
+        © 2025 Groupie Tracker - Projet Ynov
+    </footer>
+
+    <script>
+        const artistsNames = [
+            {{range $index, $artist := .}}{{if $index}},{{end}}"{{ $artist.Name | safeJS }}"{{end}}
+        ];
+
+        const inputArtists = document.getElementById('artist-search-artists');
+        const boxArtists = document.getElementById('suggestions-artists');
+
+        inputArtists.addEventListener('input', () => {
+            const value = inputArtists.value.toLowerCase().trim();
+            boxArtists.innerHTML = '';
+            if (value.length === 0) return;
+            const matches = artistsNames
+                .filter(name => name.toLowerCase().startsWith(value))
+                .slice(0, 8);
+            matches.forEach(name => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.textContent = name;
+                item.addEventListener('click', () => {
+                    inputArtists.value = name;
+                    boxArtists.innerHTML = '';
+                    window.location.href = '/artists?q=' + encodeURIComponent(name);
+                });
+                boxArtists.appendChild(item);
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const wrapper = document.querySelector('.search-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                boxArtists.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>

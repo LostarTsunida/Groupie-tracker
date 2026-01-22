@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Artist.Name}} - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav class="links-navbar">
+            <a href="/">Accueil</a>
+            <a href="/artists" class="active">Artistes</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="artist-detail">
+            <div class="artist-detail-image">
+                <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}">
+            </div>
+
+            <div class="artist-detail-info">
+                <h1>{{.Artist.Name}}</h1>
+                <p><strong>Année de création :</strong> {{.Artist.CreationDate}}</p>
+                <p><strong>Premier album :</strong> {{.Artist.FirstAlbum}}</p>
+
+                {{if .Artist.Members}}
+                <h2>Membres</h2>
+                <ul>
+                    {{range .Artist.Members}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{end}}
+            </div>
+        </section>
+
+        <section class="artist-extra">
+            <div class="artist-panel">
+                <h2>Lieux de concerts</h2>
+                {{if .Locs.Locations}}
+                <ul>
+                    {{range .Locs.Locations}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{else}}
+                <p>Aucun lieu disponible.</p>
+                {{end}}
+            </div>
+
+            <div class="artist-panel">
+                <h2>Dates de concerts</h2>
+                {{if .Dates.Dates}}
+                <ul>
+                    {{range .Dates.Dates}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{else}}
+                <p>Aucune date disponible.</p>
+                {{end}}
+            </div>
+
+            <div class="artist-panel">
+                <h2>Concerts par lieu</h2>
+                {{if .Rel.DatesLocations}}
+                {{range $loc, $dates := .Rel.DatesLocations}}
+                <div class="relation-location-block">
+                    <p class="relation-location">{{$loc}}</p>
+                    <ul class="relation-dates">
+                        {{range $dates}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                </div>
+                {{end}}
+                {{else}}
+                <p>Aucune relation disponible.</p>
+                {{end}}
+            </div>
+        </section>
+
+        <a href="/artists" class="back-link">← Retour à la liste des artistes</a>
+    </main>
+
+    <footer class="footer">
+        © 2025 Groupie Tracker - Projet Ynov
+    </footer>
+
+</body>
+
+</html>

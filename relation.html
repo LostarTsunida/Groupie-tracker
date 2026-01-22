@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Relations - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav class="links-navbar">
+            <a href="/">Accueil</a>
+            <a href="/artists">Artistes</a>
+            <a href="/locations">Lieux</a>
+            <a href="/dates">Dates</a>
+            <a href="/relation" class="active">Relations</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <h1 class="page-title">Relations artistes / lieux / dates</h1>
+        <p>
+            Chaque carte représente un artiste et liste les lieux où il a joué
+            ainsi que les dates de concerts associées.
+        </p>
+
+        <section class="info-grid">
+            {{range .Index}}
+            <article class="info-card relation-card">
+                <h2>Artiste #{{.ID}}</h2>
+                <p class="relation-subtitle">Concerts par lieu :</p>
+
+                <div class="relation-locations">
+                    {{range $loc, $dates := .DatesLocations}}
+                    <div class="relation-location-block">
+                        <p class="relation-location">{{$loc}}</p>
+                        <ul class="relation-dates">
+                            {{range $dates}}
+                            <li>{{.}}</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                    {{end}}
+                </div>
+            </article>
+            {{end}}
+        </section>
+    </main>
+
+    <footer class="footer">
+        © 2025 Groupie Tracker - Projet Ynov
+    </footer>
+
+</body>
+
+</html>

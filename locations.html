@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lieux - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav class="links-navbar">
+            <a href="/">Accueil</a>
+            <a href="/artists" class="active">Artistes</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <h1 class="page-title">Lieux</h1>
+
+        <section class="info-grid">
+            {{range .Index}}
+            <article class="info-card">
+                <h2>Artiste #{{.ID}}</h2>
+                <p>Lieux de concerts :</p>
+                <ul>
+                    {{range .Locations}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </article>
+            {{end}}
+        </section>
+    </main>
+
+    <footer class="footer">
+        © 2025 Groupie Tracker - Projet Ynov
+    </footer>
+
+</body>
+
+</html>

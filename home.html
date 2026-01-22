@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="home-body">
+    <main class="home-hero">
+        <div class="hero-content">
+            <h1>Groupie Tracker</h1>
+            <p>Recherchez un groupe ou un artiste et explorez ses concerts.</p>
+            <div class="search-wrapper">
+                <input type="text" id="artist-search" placeholder="Tape le nom d'un artiste..." autocomplete="off">
+                <div id="suggestions" class="suggestions"></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const artists = [
+            {{range $index, $artist := .}}{{if $index}},{{end}}"{{ $artist.Name | safeJS }}"{{end}}
+        ];
+
+        const input = document.getElementById('artist-search');
+        const box = document.getElementById('suggestions');
+
+        input.addEventListener('input', () => {
+            const value = input.value.toLowerCase().trim();
+            box.innerHTML = '';
+            if (value.length === 0) return;
+            const matches = artists
+                .filter(name => name.toLowerCase().startsWith(value))
+                .slice(0, 8);
+            matches.forEach(name => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.textContent = name;
+                item.addEventListener('click', () => {
+                    input.value = name;
+                    box.innerHTML = '';
+                    window.location.href = '/artists?q=' + encodeURIComponent(name);
+                });
+                box.appendChild(item);
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.search-wrapper').contains(e.target)) {
+                box.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
